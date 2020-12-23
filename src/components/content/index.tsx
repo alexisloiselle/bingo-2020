@@ -1,22 +1,43 @@
 import React, { createRef, useContext, useEffect } from "react";
-import { CellType, ColorType, Context } from "../../stores";
+import { ColorType, Context } from "../../stores";
 import "./index.css";
 import { Token } from "../token";
 import { Cell } from "../cell";
 import { useDrop } from "react-dnd";
 import cn from "classnames";
+import { useLocation } from "react-router-dom";
 import cells from "../../services/cells";
+import cellsLoiselle from "../../services/cells.loiselle";
+import cellsMtlo from "../../services/cells.mtlo";
 
-interface IProps {
-  source?: CellType[];
-}
+interface IProps {}
 
-export const Content: React.FunctionComponent<IProps> = ({
-  source = cells,
-}) => {
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
+export const Content: React.FunctionComponent<IProps> = () => {
   const { name, setName, grid, tokenizeCell, setSource, isBingo } = useContext(
     Context
   );
+
+  const params = useQuery();
+  useEffect(() => {
+    const f = params.get("f");
+    if (!f) {
+      setSource(cells);
+      return;
+    }
+
+    setSource(
+      ["loiselle"].includes(f)
+        ? cellsLoiselle
+        : ["mtlo", "mont-lo", "mont-laurier", "tremblay", "vincent"].includes(f)
+        ? cellsMtlo
+        : cells
+    );
+  }, [setSource, params]);
+
   const inputRef = createRef<HTMLInputElement>();
 
   const [{ canDrop, isOver }, drop] = useDrop<
@@ -32,10 +53,6 @@ export const Content: React.FunctionComponent<IProps> = ({
       isOver: monitor.isOver(),
     }),
   });
-
-  useEffect(() => {
-    setSource(source);
-  }, [source]);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -61,7 +78,7 @@ export const Content: React.FunctionComponent<IProps> = ({
             backgroundColor: "#ff07",
             fontSize: 128,
             zIndex: 999,
-            display: 'flex',
+            display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}

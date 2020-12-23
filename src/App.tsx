@@ -12,8 +12,6 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import cellsLoiselle from "./services/cells.loiselle";
-import cellsMtlo from "./services/cells.mtlo";
 
 function App() {
   return (
@@ -23,25 +21,15 @@ function App() {
           <div
             className="background"
             style={{
-              backgroundImage: `url("/images/mosaic.png")`,
+              backgroundImage: `url("${process.env.PUBLIC_URL}/images/mosaic.png")`,
             }}
           />
           <Router>
             <Switch>
-              <Route exact path="/loiselle">
-                <Content source={cellsLoiselle} />
-              </Route>
-              <Route exact path={["/mtlo"]}>
-                <Content source={cellsMtlo} />
-              </Route>
-              <Redirect path={"/tremblay"} to="/mtlo" />
-              <Redirect path={"/vincent"} to="/mtlo" />
-              <Redirect path={"/mont-lo"} to="/mtlo" />
-              <Redirect path={"/mont-laurier"} to="/mtlo" />
-              <Route exact path="/">
+              <Route exact path="/bingo-2020">
                 <Content />
               </Route>
-              <Redirect to="/" />
+              <Redirect to="/bingo-2020" />
             </Switch>
           </Router>
         </div>
