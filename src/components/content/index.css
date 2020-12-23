@@ -1,0 +1,116 @@
+.content-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name-input {
+  background-color: white;
+  border: solid 1px black;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 85vw;
+  height: 85vw;
+  max-width: 85vh;
+  max-height: 85vh;
+  border-radius: 4;
+  background-color: #fffe;
+  box-shadow: 5px 5px 10px #0005;
+}
+
+.token-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: fit-content;
+  padding: 12px;
+  border-radius: 4px;
+  border: solid 1px black;
+}
+
+.token-container.droppable {
+  opacity: 0.5;
+  border-style: dashed;
+}
+
+.token-container.droppable.over {
+  opacity: 1;
+}
+
+.token-container > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.input {
+  font-size: 24px;
+  width: 150px;
+  height: 30px;
+  margin-right: 8px;
+  margin-top: 0;
+}
+
+.submit {
+  width: 36px;
+  height: 36px;
+  background-color: #3775b8;
+  color: white;
+  border: solid 1px black;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 600px) {
+  .content-container {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .token-container {
+    flex-direction: row;
+    margin-bottom: 8px;
+  }
+
+  .token-container > *:not(:last-child) {
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .form-container > *:not(:last-child) {
+    margin-right: 16px;
+  }
+
+  .card {
+    width: 95vw;
+    height: 95vw;
+    max-width: 95vh;
+    max-height: 95vh;
+  }
+}

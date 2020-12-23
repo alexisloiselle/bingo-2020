@@ -1,0 +1,11 @@
+.token {
+  width: 60px;
+  height: 60px;
+}
+
+@media screen and (max-width: 600px) {
+  .token {
+    width: 45px;
+    height: 45px;
+  }
+}
