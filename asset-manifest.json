@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/bingo-2020/static/css/main.bd8a0727.chunk.css",
-    "main.js": "/bingo-2020/static/js/main.4b862b30.chunk.js",
-    "main.js.map": "/bingo-2020/static/js/main.4b862b30.chunk.js.map",
+    "main.js": "/bingo-2020/static/js/main.e836ac00.chunk.js",
+    "main.js.map": "/bingo-2020/static/js/main.e836ac00.chunk.js.map",
     "runtime-main.js": "/bingo-2020/static/js/runtime-main.4e971155.js",
     "runtime-main.js.map": "/bingo-2020/static/js/runtime-main.4e971155.js.map",
     "static/js/2.47759f34.chunk.js": "/bingo-2020/static/js/2.47759f34.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.4e971155.js",
     "static/js/2.47759f34.chunk.js",
     "static/css/main.bd8a0727.chunk.css",
-    "static/js/main.4b862b30.chunk.js"
+    "static/js/main.e836ac00.chunk.js"
   ]
 }
