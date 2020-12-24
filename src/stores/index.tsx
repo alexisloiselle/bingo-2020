@@ -19,13 +19,13 @@ export const Context = createContext<{
   setSource: (
     source: readonly { readonly id: number; readonly value: string }[]
   ) => void;
-  isBingo: boolean;
+  bingoCount: number;
 }>({
   grid: [],
   setName: () => {},
   tokenizeCell: () => {},
   setSource: () => {},
-  isBingo: false,
+  bingoCount: 0,
 });
 
 export const useName = (): [
@@ -58,14 +58,14 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
   const [source, setSource] = useState<
     readonly { readonly id: number; readonly value: string }[]
   >([]);
-  const [isBingo, setIsBingo] = useState<boolean>(false);
+  const [bingoCount, setBingoCount] = useState<number>(0);
 
   useEffect(() => {
     if (!name) {
       return;
     }
 
-    setIsBingo(false);
+    setBingoCount(0);
 
     const randomValue = getSeed(name);
     setPrng(randomValue);
@@ -87,7 +87,7 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
     const dimension = Math.sqrt(grid.length);
 
     // Rows and columns
-    let lineBingo = false;
+    let bc = 0;
     for (let i = 0; i < dimension; i++) {
       // Row
       let rowBingo = true;
@@ -99,8 +99,7 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
       }
 
       if (rowBingo) {
-        lineBingo = true;
-        break;
+        bc++;
       }
 
       // Column
@@ -113,14 +112,8 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
       }
 
       if (columnBingo) {
-        lineBingo = true;
-        break;
+        bc++;
       }
-    }
-
-    if (lineBingo) {
-      setIsBingo(true);
-      return;
     }
 
     // Diagonal 1
@@ -132,8 +125,7 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
       }
     }
     if (diagonal1Bingo) {
-      setIsBingo(true);
-      return;
+      bc++;
     }
 
     // Diagonal 2
@@ -149,11 +141,10 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
       }
     }
     if (diagonal2Bingo) {
-      setIsBingo(true);
-      return;
+      bc++;
     }
 
-    setIsBingo(false);
+    setBingoCount(bc);
   }, [grid]);
 
   const tokenizeCell = (color: ColorType, id?: number, from?: number) => {
@@ -171,7 +162,7 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
 
   return (
     <Context.Provider
-      value={{ name, setName, prng, grid, tokenizeCell, setSource, isBingo }}
+      value={{ name, setName, prng, grid, tokenizeCell, setSource, bingoCount }}
     >
       {children}
     </Context.Provider>

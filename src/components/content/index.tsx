@@ -1,4 +1,10 @@
-import React, { createRef, useContext, useEffect } from "react";
+import React, {
+  createRef,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ColorType, Context } from "../../stores";
 import "./index.css";
 import { Token } from "../token";
@@ -16,10 +22,27 @@ const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 
+function usePrevious<T>(value: T) {
+  const ref = useRef<T>();
+
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
+}
+
 export const Content: React.FunctionComponent<IProps> = () => {
-  const { name, setName, grid, tokenizeCell, setSource, isBingo } = useContext(
-    Context
-  );
+  const {
+    name,
+    setName,
+    grid,
+    tokenizeCell,
+    setSource,
+    bingoCount,
+  } = useContext(Context);
+  const [showBingo, setShowBingo] = useState(false);
+  const previousBingoCount = usePrevious(bingoCount);
 
   const params = useQuery();
   useEffect(() => {
@@ -36,7 +59,18 @@ export const Content: React.FunctionComponent<IProps> = () => {
         ? cellsMtlo
         : cells
     );
+    setShowBingo(false);
   }, [setSource, params]);
+
+  useEffect(() => {
+    setShowBingo(false);
+  }, [name]);
+
+  useEffect(() => {
+    if (bingoCount > (previousBingoCount ?? 0)) {
+      setShowBingo(true);
+    }
+  }, [bingoCount, previousBingoCount]);
 
   const inputRef = createRef<HTMLInputElement>();
 
@@ -67,10 +101,13 @@ export const Content: React.FunctionComponent<IProps> = () => {
     inputRef.current && (inputRef.current.value = "");
   };
 
+  const onBingoClick = () => setShowBingo(false);
+
   return (
     <div className="content-container">
-      {isBingo && (
+      {showBingo && (
         <div
+          onClick={onBingoClick}
           style={{
             position: "absolute",
             width: "100vw",
