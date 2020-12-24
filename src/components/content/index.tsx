@@ -59,7 +59,6 @@ export const Content: React.FunctionComponent<IProps> = () => {
         ? cellsMtlo
         : cells
     );
-    setShowBingo(false);
   }, [setSource, params]);
 
   useEffect(() => {
