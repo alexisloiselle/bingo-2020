@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/bingo-2020/static/css/main.bd8a0727.chunk.css",
-    "main.js": "/bingo-2020/static/js/main.cd1a4820.chunk.js",
-    "main.js.map": "/bingo-2020/static/js/main.cd1a4820.chunk.js.map",
+    "main.js": "/bingo-2020/static/js/main.4b862b30.chunk.js",
+    "main.js.map": "/bingo-2020/static/js/main.4b862b30.chunk.js.map",
     "runtime-main.js": "/bingo-2020/static/js/runtime-main.4e971155.js",
     "runtime-main.js.map": "/bingo-2020/static/js/runtime-main.4e971155.js.map",
-    "static/js/2.d22d131d.chunk.js": "/bingo-2020/static/js/2.d22d131d.chunk.js",
-    "static/js/2.d22d131d.chunk.js.map": "/bingo-2020/static/js/2.d22d131d.chunk.js.map",
+    "static/js/2.47759f34.chunk.js": "/bingo-2020/static/js/2.47759f34.chunk.js",
+    "static/js/2.47759f34.chunk.js.map": "/bingo-2020/static/js/2.47759f34.chunk.js.map",
     "static/js/3.698df623.chunk.js": "/bingo-2020/static/js/3.698df623.chunk.js",
     "static/js/3.698df623.chunk.js.map": "/bingo-2020/static/js/3.698df623.chunk.js.map",
     "index.html": "/bingo-2020/index.html",
     "static/css/main.bd8a0727.chunk.css.map": "/bingo-2020/static/css/main.bd8a0727.chunk.css.map",
-    "static/js/2.d22d131d.chunk.js.LICENSE.txt": "/bingo-2020/static/js/2.d22d131d.chunk.js.LICENSE.txt"
+    "static/js/2.47759f34.chunk.js.LICENSE.txt": "/bingo-2020/static/js/2.47759f34.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4e971155.js",
-    "static/js/2.d22d131d.chunk.js",
+    "static/js/2.47759f34.chunk.js",
     "static/css/main.bd8a0727.chunk.css",
-    "static/js/main.cd1a4820.chunk.js"
+    "static/js/main.4b862b30.chunk.js"
   ]
 }
