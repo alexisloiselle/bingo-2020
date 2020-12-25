@@ -6,7 +6,7 @@ export const getSeed = (value: string): prng => {
 
 export const getGrid = (
   defaultSeed: prng,
-  cells: readonly { readonly id: number; readonly value: string }[]
+  cells: { id: number; value: string }[]
 ) => {
   let seed = defaultSeed.double();
   let array = [...cells];

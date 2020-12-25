@@ -12,9 +12,6 @@ import { Cell } from "../cell";
 import { useDrop } from "react-dnd";
 import cn from "classnames";
 import { useLocation } from "react-router-dom";
-import cells from "../../services/cells";
-import cellsLoiselle from "../../services/cells.loiselle";
-import cellsMtlo from "../../services/cells.mtlo";
 
 interface IProps {}
 
@@ -33,33 +30,17 @@ function usePrevious<T>(value: T) {
 }
 
 export const Content: React.FunctionComponent<IProps> = () => {
-  const {
-    name,
-    setName,
-    grid,
-    tokenizeCell,
-    setSource,
-    bingoCount,
-  } = useContext(Context);
+  const { name, setName, grid, tokenizeCell, bingoCount, setF } = useContext(
+    Context
+  );
   const [showBingo, setShowBingo] = useState(false);
   const previousBingoCount = usePrevious(bingoCount);
 
   const params = useQuery();
   useEffect(() => {
     const f = params.get("f");
-    if (!f) {
-      setSource(cells);
-      return;
-    }
-
-    setSource(
-      ["loiselle"].includes(f)
-        ? cellsLoiselle
-        : ["mtlo", "mont-lo", "mont-laurier", "tremblay", "vincent"].includes(f)
-        ? cellsMtlo
-        : cells
-    );
-  }, [setSource, params]);
+    setF(f ?? undefined);
+  }, [params]);
 
   useEffect(() => {
     setShowBingo(false);

@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { prng } from "seedrandom";
+import cells from "../services/cells";
 import { getGrid, getSeed } from "../services/seed";
+import { getState, saveState } from "../services/storage";
 
 export type ColorType = "orange" | "violet" | "blue" | "green";
 
@@ -16,16 +18,17 @@ export const Context = createContext<{
   prng?: prng;
   grid: CellType[];
   tokenizeCell: (color: ColorType, id?: number, from?: number) => void;
-  setSource: (
-    source: readonly { readonly id: number; readonly value: string }[]
-  ) => void;
+  setSource: (source: { id: number; value: string }[]) => void;
   bingoCount: number;
+  f?: string;
+  setF: (f?: string) => void;
 }>({
   grid: [],
   setName: () => {},
   tokenizeCell: () => {},
   setSource: () => {},
   bingoCount: 0,
+  setF: () => {},
 });
 
 export const useName = (): [
@@ -55,10 +58,13 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
   const [name, setName] = useState<string | undefined>();
   const [prng, setPrng] = useState<prng | undefined>();
   const [grid, setGrid] = useState<CellType[]>([]);
-  const [source, setSource] = useState<
-    readonly { readonly id: number; readonly value: string }[]
-  >([]);
+  const [source, setSource] = useState<{ id: number; value: string }[]>([]);
   const [bingoCount, setBingoCount] = useState<number>(0);
+  const [f, setF] = useState<string | undefined>();
+
+  useEffect(() => {
+    setSource(cells(f));
+  }, [f]);
 
   useEffect(() => {
     if (!name) {
@@ -72,12 +78,19 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
 
     const tmpGrid = getGrid(randomValue, source);
 
-    setGrid([
-      ...tmpGrid.slice(0, 12),
-      { id: 25, value: "GRATUIT" },
-      ...tmpGrid.slice(12, 24),
-    ]);
-  }, [name, source]);
+    const existingGrid = getState(name, f);
+
+    setGrid(
+      [
+        ...tmpGrid.slice(0, 12),
+        { id: 25, value: "GRATUIT" },
+        ...tmpGrid.slice(12, 24),
+      ].map((cell) => {
+        const existingToken = existingGrid?.find((c) => c.id === cell.id);
+        return { ...cell, tokenized: existingToken?.tokenized };
+      })
+    );
+  }, [name, source, f]);
 
   useEffect(() => {
     if (grid.length === 0) {
@@ -145,7 +158,16 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
     }
 
     setBingoCount(bc);
-  }, [grid]);
+
+    name &&
+      saveState(
+        grid
+          .filter((g) => !!g.tokenized)
+          .map((g) => ({ id: g.id, tokenized: g.tokenized as ColorType })),
+        name,
+        f
+      );
+  }, [grid, name, f]);
 
   const tokenizeCell = (color: ColorType, id?: number, from?: number) => {
     const newGrid = grid.map((c) => {
@@ -162,7 +184,17 @@ export const ContextProvider: React.FunctionComponent = ({ children }) => {
 
   return (
     <Context.Provider
-      value={{ name, setName, prng, grid, tokenizeCell, setSource, bingoCount }}
+      value={{
+        name,
+        setName,
+        prng,
+        grid,
+        tokenizeCell,
+        setSource,
+        bingoCount,
+        f,
+        setF,
+      }}
     >
       {children}
     </Context.Provider>

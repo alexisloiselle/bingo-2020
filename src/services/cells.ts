@@ -1,4 +1,7 @@
-export default [
+import cellsLoiselle from "./cells.loiselle";
+import cellsMtlo from "./cells.mtlo";
+
+const cells = [
   { id: 1, value: "On t'entend pas t'es sur mute" },
   { id: 2, value: "Nouvelle souche plus contagieuse" },
   { id: 3, value: "Colis pogné à Mississauga" },
@@ -23,4 +26,15 @@ export default [
   { id: 22, value: "Les cotes d'écoute du Bye bye c't'année" },
   { id: 23, value: "Je reviens, je vais aux toilettes" },
   { id: 24, value: "Ça va fêter fort en 2021" },
-] as const;
+];
+
+export default (key?: string): { id: number; value: string }[] => {
+  if (!key) return cells;
+
+  const map: { [key: string]: { id: number; value: string }[] } = {
+    loiselle: cellsLoiselle,
+    mtlo: cellsMtlo,
+  };
+
+  return map[key] ?? cells;
+};
