@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/bingo-2020/static/css/main.bd8a0727.chunk.css",
-    "main.js": "/bingo-2020/static/js/main.e836ac00.chunk.js",
-    "main.js.map": "/bingo-2020/static/js/main.e836ac00.chunk.js.map",
-    "runtime-main.js": "/bingo-2020/static/js/runtime-main.4e971155.js",
-    "runtime-main.js.map": "/bingo-2020/static/js/runtime-main.4e971155.js.map",
-    "static/js/2.47759f34.chunk.js": "/bingo-2020/static/js/2.47759f34.chunk.js",
-    "static/js/2.47759f34.chunk.js.map": "/bingo-2020/static/js/2.47759f34.chunk.js.map",
-    "static/js/3.698df623.chunk.js": "/bingo-2020/static/js/3.698df623.chunk.js",
-    "static/js/3.698df623.chunk.js.map": "/bingo-2020/static/js/3.698df623.chunk.js.map",
+    "main.js": "/bingo-2020/static/js/main.6704cc49.chunk.js",
+    "main.js.map": "/bingo-2020/static/js/main.6704cc49.chunk.js.map",
+    "runtime-main.js": "/bingo-2020/static/js/runtime-main.f6f53588.js",
+    "runtime-main.js.map": "/bingo-2020/static/js/runtime-main.f6f53588.js.map",
+    "static/js/2.63992472.chunk.js": "/bingo-2020/static/js/2.63992472.chunk.js",
+    "static/js/2.63992472.chunk.js.map": "/bingo-2020/static/js/2.63992472.chunk.js.map",
+    "static/js/3.6a3ba0f9.chunk.js": "/bingo-2020/static/js/3.6a3ba0f9.chunk.js",
+    "static/js/3.6a3ba0f9.chunk.js.map": "/bingo-2020/static/js/3.6a3ba0f9.chunk.js.map",
     "index.html": "/bingo-2020/index.html",
     "static/css/main.bd8a0727.chunk.css.map": "/bingo-2020/static/css/main.bd8a0727.chunk.css.map",
-    "static/js/2.47759f34.chunk.js.LICENSE.txt": "/bingo-2020/static/js/2.47759f34.chunk.js.LICENSE.txt"
+    "static/js/2.63992472.chunk.js.LICENSE.txt": "/bingo-2020/static/js/2.63992472.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4e971155.js",
-    "static/js/2.47759f34.chunk.js",
+    "static/js/runtime-main.f6f53588.js",
+    "static/js/2.63992472.chunk.js",
     "static/css/main.bd8a0727.chunk.css",
-    "static/js/main.e836ac00.chunk.js"
+    "static/js/main.6704cc49.chunk.js"
   ]
 }
